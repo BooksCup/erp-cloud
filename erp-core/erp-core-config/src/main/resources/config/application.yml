@@ -1,0 +1,29 @@
+server:
+  port: 8888
+
+spring:
+  profiles:
+    active: subversion
+  application:
+    name: erp-core-config
+  cloud:
+    config:
+      server:
+        svn:
+          uri: http://127.0.0.1/devops/saas/
+          username: admin
+          password: '123456'
+          search-paths: erp-cloud/erp-core/erp-core-config-repo/
+          default-label: branches
+          basedir: config-center/
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+
+management:
+  security:
+    enabled: false

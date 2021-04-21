@@ -1,0 +1,23 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: erp-core-eureka
+#  cloud:
+#    inetutils:
+#      preferredNetworks[0]: ^121\.196
+
+eureka:
+  server:
+    enableSelfPreservation: false
+    # 启用主动失效，并且每次主动失效检测间隔为10s
+    evictionIntervalTimerInMs: 10000
+  instance:
+    hostname: http://127.0.0.1
+    prefer-ip-address: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
