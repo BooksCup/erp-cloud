@@ -4,16 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <description>核心模块</description>
+    <description>授权模块</description>
     <groupId>com.bc.parent</groupId>
-    <artifactId>erp-core</artifactId>
+    <artifactId>erp-auth</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.9.RELEASE</version>
+        <artifactId>erp-cloud</artifactId>
+        <groupId>com.bc</groupId>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <properties>
@@ -28,7 +28,8 @@
     </properties>
 
     <modules>
-        <module>erp-core-config</module>
-        <module>erp-core-eureka</module>
+        <module>erp-auth-server</module>
+        <module>erp-auth-client</module>
     </modules>
+
 </project>
