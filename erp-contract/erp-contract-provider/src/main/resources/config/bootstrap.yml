@@ -1,0 +1,47 @@
+server:
+  port: 8085
+  context-path: /erp-contract
+
+feign:
+  hystrix:
+    enabled: true
+
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  profiles: dev
+  cloud:
+    bootstrap:
+      enabled: false
+    config:
+      uri: http://127.0.0.1:8888
+      name: erp-contract-provider
+      profile: dev
+  application:
+    name: erp-contract-provider
+---
+spring:
+  profiles: test
+  cloud:
+    bootstrap:
+      enabled: false
+    config:
+      uri: http://127.0.0.1:8888
+      name: erp-contract-provider
+      profile: test
+  application:
+    name: erp-contract-provider
+---
+spring:
+  profiles: prod
+  cloud:
+    bootstrap:
+      enabled: false
+    config:
+      uri: http://127.0.0.1:8888
+      name: erp-contract-provider
+      profile: prod
+  application:
+    name: erp-contract-provider

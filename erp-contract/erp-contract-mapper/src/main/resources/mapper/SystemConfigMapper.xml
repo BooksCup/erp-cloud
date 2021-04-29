@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bc.contract.mapper.SystemConfigMapper">
+
+    <resultMap id="systemConfig" type="com.bc.contract.entity.SystemConfig">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <id column="type" property="type" jdbcType="VARCHAR"/>
+        <id column="value" property="value" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getSystemConfig" resultMap="systemConfig" parameterType="String">
+        select *
+        from t_system_config
+        where type = #{type}
+    </select>
+
+</mapper>
