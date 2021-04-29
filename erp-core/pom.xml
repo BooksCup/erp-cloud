@@ -30,5 +30,6 @@
     <modules>
         <module>erp-core-config</module>
         <module>erp-core-eureka</module>
+        <module>erp-core-common</module>
     </modules>
 </project>
