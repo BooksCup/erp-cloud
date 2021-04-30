@@ -1,5 +1,6 @@
 package com.bc.contract.provider;
 
+import com.bc.common.cons.Constant;
 import com.bc.contract.service.TokenService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,7 +39,7 @@ public class TokenProvider {
             responseEntity = new ResponseEntity<>(token, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            responseEntity = new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
+            responseEntity = new ResponseEntity<>(Constant.EMPTY_STRING, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return responseEntity;
     }
