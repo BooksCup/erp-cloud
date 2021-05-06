@@ -45,7 +45,7 @@ public class TokenServiceImpl implements TokenService {
         String token = getTokenByCache();
         if (StringUtils.isEmpty(token)) {
             token = getTokenByApi();
-            redisDao.set(RedisKey.E_SIGN_TOKEN, token);
+            redisDao.set(RedisKey.E_SIGN_TOKEN, token, Constant.E_SIGN_TOKEN_TIMEOUT);
         }
         return token;
     }

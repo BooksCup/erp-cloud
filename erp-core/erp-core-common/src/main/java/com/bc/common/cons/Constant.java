@@ -17,4 +17,10 @@ public class Constant {
      */
     public static final String PROTOCOL_HTTPS_PREFIX = "https:";
 
+    /**
+     * e签宝 token过期时间
+     * 2小时
+     */
+    public static final Long E_SIGN_TOKEN_TIMEOUT = 2 * 60 * 3600L;
+
 }
