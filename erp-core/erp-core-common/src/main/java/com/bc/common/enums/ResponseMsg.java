@@ -10,7 +10,9 @@ public enum ResponseMsg {
     /**
      * 返回信息
      */
-    ESIGN_CONFIG_EMPTY("ESIGN_CONFIG_EMPTY", "电子合同API未做配置!"),
+    ESIGN_CONFIG_EMPTY("ESIGN_CONFIG_EMPTY", "电子合同API未做配置"),
+    ADD_SUCCESS("ADD_SUCCESS", "新增成功"),
+    ADD_ERROR("ADD_ERROR", "新增失败"),
     ;
 
     ResponseMsg(String responseCode, String responseMessage) {
