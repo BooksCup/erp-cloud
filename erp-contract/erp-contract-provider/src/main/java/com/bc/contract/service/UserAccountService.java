@@ -16,4 +16,13 @@ public interface UserAccountService {
      */
     void addUserAccount(UserAccount userAccount);
 
+    /**
+     * e签宝平台上创建个人签署账号
+     *
+     * @param token       token
+     * @param userAccount 个人签署账号
+     * @return e签宝平台上个人签署账号ID
+     */
+    String addUserAccount(String token, UserAccount userAccount);
+
 }

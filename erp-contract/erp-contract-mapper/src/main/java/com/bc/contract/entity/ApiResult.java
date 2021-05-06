@@ -11,6 +11,7 @@ public class ApiResult {
 
     private String message;
     private int code;
+    private boolean success;
     private Map<String, Object> data;
 
     public String getMessage() {
@@ -27,6 +28,14 @@ public class ApiResult {
 
     public void setCode(int code) {
         this.code = code;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
     public Map<String, Object> getData() {

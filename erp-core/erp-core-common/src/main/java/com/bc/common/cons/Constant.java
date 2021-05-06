@@ -8,6 +8,11 @@ package com.bc.common.cons;
 public class Constant {
 
     /**
+     * e签宝 url
+     */
+    public static final String E_SIGN_BASE_URL = "https://openapi.esign.cn";
+
+    /**
      * 空字符串
      */
     public static final String EMPTY_STRING = "";

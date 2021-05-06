@@ -10,23 +10,27 @@ import com.bc.common.utils.PrimaryKeyUtil;
 public class UserAccount {
 
     private String id;
+    private String userId;
     private String name;
     private String idType;
     private String idNumber;
     private String mobile;
     private String email;
+    private String thirdPartyUserId;
 
     public UserAccount() {
 
     }
 
-    public UserAccount(String name, String idType, String idNumber, String mobile, String email) {
+    public UserAccount(String userId, String name, String idType, String idNumber, String mobile, String email) {
         this.id = PrimaryKeyUtil.generateId();
+        this.userId = userId;
         this.name = name;
         this.idType = idType;
         this.idNumber = idNumber;
         this.mobile = mobile;
         this.email = email;
+        this.thirdPartyUserId = userId;
     }
 
     public String getId() {
@@ -35,6 +39,14 @@ public class UserAccount {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -77,4 +89,11 @@ public class UserAccount {
         this.email = email;
     }
 
+    public String getThirdPartyUserId() {
+        return thirdPartyUserId;
+    }
+
+    public void setThirdPartyUserId(String thirdPartyUserId) {
+        this.thirdPartyUserId = thirdPartyUserId;
+    }
 }
