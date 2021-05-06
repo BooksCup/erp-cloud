@@ -48,7 +48,7 @@ public class UserAccountController {
         try {
             UserAccount userAccount = new UserAccount(userId, name, idType, idNumber, mobile, email);
             String token = tokenService.getToken();
-            String accountId = userAccountService.addUserAccount(token, userAccount);
+            String accountId = userAccountService.addUserAccountToSignPlatform(token, userAccount);
             if (!StringUtils.isEmpty(accountId)) {
                 userAccountService.addUserAccount(userAccount);
                 responseEntity = new ResponseEntity<>(ResponseMsg.ADD_SUCCESS.getResponseCode(), HttpStatus.OK);

@@ -26,6 +26,6 @@ public class Constant {
      * e签宝 token过期时间
      * 2小时
      */
-    public static final Long E_SIGN_TOKEN_TIMEOUT = 2 * 60 * 3600L;
+    public static final Long E_SIGN_TOKEN_TIMEOUT = 7200L;
 
 }

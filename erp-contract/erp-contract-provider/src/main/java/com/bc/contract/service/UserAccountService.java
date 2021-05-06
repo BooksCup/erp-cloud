@@ -23,6 +23,6 @@ public interface UserAccountService {
      * @param userAccount 个人签署账号
      * @return e签宝平台上个人签署账号ID
      */
-    String addUserAccount(String token, UserAccount userAccount);
+    String addUserAccountToSignPlatform(String token, UserAccount userAccount);
 
 }

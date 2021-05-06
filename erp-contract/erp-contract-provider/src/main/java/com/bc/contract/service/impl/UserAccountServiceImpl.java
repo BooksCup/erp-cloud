@@ -54,7 +54,7 @@ public class UserAccountServiceImpl implements UserAccountService {
      * @return e签宝平台上个人签署账号ID
      */
     @Override
-    public String addUserAccount(String token, UserAccount userAccount) {
+    public String addUserAccountToSignPlatform(String token, UserAccount userAccount) {
         String url = Constant.E_SIGN_BASE_URL + "/v1/accounts/createByThirdPartyUserId";
         String accountId;
         SystemConfig systemConfig = systemConfigMapper.getSystemConfig(SystemConfigTypeEnum.ESIGN.getType());
