@@ -34,4 +34,11 @@ public interface UserAccountService {
      */
     boolean deleteUserAccountFromSignPlatform(String token, String accountId);
 
+    /**
+     * 通过签署账号ID删除签署账号
+     *
+     * @param accountId 签署账号ID
+     */
+    void deleteUserAccountByAccountId(String accountId);
+
 }

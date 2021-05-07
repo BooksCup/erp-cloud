@@ -133,4 +133,14 @@ public class UserAccountServiceImpl implements UserAccountService {
         return flag;
     }
 
+    /**
+     * 通过签署账号ID删除签署账号
+     *
+     * @param accountId 签署账号ID
+     */
+    @Override
+    public void deleteUserAccountByAccountId(String accountId) {
+        userAccountMapper.deleteUserAccountByAccountId(accountId);
+    }
+
 }

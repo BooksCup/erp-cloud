@@ -33,4 +33,9 @@
         )
     </insert>
 
+    <delete id="deleteUserAccountByAccountId" parameterType="String">
+        delete from t_user_account
+        where account_id = #{accountId}
+    </delete>
+
 </mapper>

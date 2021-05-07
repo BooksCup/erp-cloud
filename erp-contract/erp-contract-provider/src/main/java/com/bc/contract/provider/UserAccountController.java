@@ -75,6 +75,7 @@ public class UserAccountController {
             String token = tokenService.getToken();
             boolean result = userAccountService.deleteUserAccountFromSignPlatform(token, accountId);
             if (result) {
+                userAccountService.deleteUserAccountByAccountId(accountId);
                 responseEntity = new ResponseEntity<>(ResponseMsg.DELETE_SUCCESS.getResponseCode(), HttpStatus.OK);
             } else {
                 responseEntity = new ResponseEntity<>(ResponseMsg.DELETE_ERROR.getResponseCode(), HttpStatus.BAD_REQUEST);
