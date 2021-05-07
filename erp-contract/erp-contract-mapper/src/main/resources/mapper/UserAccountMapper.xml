@@ -8,6 +8,8 @@
         insert into t_user_account
         (
         id,
+        user_id,
+        account_id,
         name,
         id_type,
         id_number,
@@ -19,6 +21,8 @@
         values
         (
         #{id},
+        #{userId},
+        #{accountId},
         #{name},
         #{idType},
         #{idNumber},

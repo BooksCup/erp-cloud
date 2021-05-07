@@ -60,7 +60,7 @@ public class UserAccountServiceImpl implements UserAccountService {
         SystemConfig systemConfig = systemConfigMapper.getSystemConfig(SystemConfigTypeEnum.ESIGN.getType());
         if (null == systemConfig) {
             // 未做电子合同相关配置
-            LOG.error("[getToken], " + ResponseMsg.ESIGN_CONFIG_EMPTY.getResponseMessage());
+            LOG.error("[addUserAccountToSignPlatform], " + ResponseMsg.ESIGN_CONFIG_EMPTY.getResponseMessage());
             return Constant.EMPTY_STRING;
         }
         ContractApiConfig contractApiConfig = JSONObject.parseObject(systemConfig.getValue(), ContractApiConfig.class);
@@ -72,13 +72,14 @@ public class UserAccountServiceImpl implements UserAccountService {
         try {
             String result = HttpUtil.httpPost(url, httpHead.getAllHeaders(), JSON.toJSONString(userAccount));
             ApiResult apiResult = JSONObject.parseObject(result, ApiResult.class);
+            LOG.info("[addUserAccountToSignPlatform], apiResult: " + apiResult);
             if (apiResult.isSuccess()) {
                 // 成功
                 accountId = apiResult.getData().get("accountId").toString();
-                LOG.info("[getToken], accountId: " + accountId);
+                LOG.info("[addUserAccountToSignPlatform], accountId: " + accountId);
             } else {
                 // 失败
-                LOG.error("[getToken], " + apiResult.getMessage());
+                LOG.error("[addUserAccountToSignPlatform], " + apiResult.getMessage());
                 accountId = Constant.EMPTY_STRING;
             }
         } catch (Exception e) {
@@ -86,6 +87,46 @@ public class UserAccountServiceImpl implements UserAccountService {
             accountId = Constant.EMPTY_STRING;
         }
         return accountId;
+    }
+
+    /**
+     * e签宝平台上注销个人签署账号
+     *
+     * @param token     token
+     * @param accountId 个人签署账号ID
+     * @return true: 注销成功   false: 注销失败
+     */
+    @Override
+    public boolean deleteUserAccountFromSignPlatform(String token, String accountId) {
+        boolean flag;
+        String url = Constant.E_SIGN_BASE_URL + "/v1/accounts/" + accountId;
+        SystemConfig systemConfig = systemConfigMapper.getSystemConfig(SystemConfigTypeEnum.ESIGN.getType());
+        if (null == systemConfig) {
+            // 未做电子合同相关配置
+            LOG.error("[deleteUserAccountFromSignPlatform], " + ResponseMsg.ESIGN_CONFIG_EMPTY.getResponseMessage());
+        }
+        ContractApiConfig contractApiConfig = JSONObject.parseObject(systemConfig.getValue(), ContractApiConfig.class);
+
+        HttpHead httpHead = new HttpHead();
+        httpHead.setHeader("X-Tsign-Open-App-Id", contractApiConfig.getAppId());
+        httpHead.setHeader("X-Tsign-Open-Token", token);
+        httpHead.setHeader("Content-Type", "application/json");
+        try {
+            String result = HttpUtil.httpDelete(url, httpHead.getAllHeaders());
+            ApiResult apiResult = JSONObject.parseObject(result, ApiResult.class);
+            if (apiResult.isSuccess()) {
+                // 成功
+                flag = true;
+            } else {
+                // 失败
+                LOG.error("[deleteUserAccountFromSignPlatform], " + apiResult.getMessage());
+                flag = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            flag = false;
+        }
+        return flag;
     }
 
 }

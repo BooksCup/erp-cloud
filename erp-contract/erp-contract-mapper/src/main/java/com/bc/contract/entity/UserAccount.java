@@ -11,6 +11,7 @@ public class UserAccount {
 
     private String id;
     private String userId;
+    private String accountId;
     private String name;
     private String idType;
     private String idNumber;
@@ -47,6 +48,14 @@ public class UserAccount {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
     public String getName() {

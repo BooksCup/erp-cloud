@@ -25,4 +25,13 @@ public interface UserAccountService {
      */
     String addUserAccountToSignPlatform(String token, UserAccount userAccount);
 
+    /**
+     * e签宝平台上注销个人签署账号
+     *
+     * @param token     token
+     * @param accountId 个人签署账号ID
+     * @return true: 注销成功   false: 注销失败
+     */
+    boolean deleteUserAccountFromSignPlatform(String token, String accountId);
+
 }

@@ -30,11 +30,6 @@ public class UserAccountController {
     @Resource
     TokenService tokenService;
 
-    /**
-     * 新增个人签署账号
-     *
-     * @return 新增结果
-     */
     @ApiOperation(value = "新增个人签署账号", notes = "新增个人签署账号")
     @PostMapping(value = "/{userId}/userAccount")
     public ResponseEntity<String> addUserAccount(
@@ -58,6 +53,34 @@ public class UserAccountController {
         } catch (Exception e) {
             e.printStackTrace();
             responseEntity = new ResponseEntity<>(ResponseMsg.ADD_ERROR.getResponseCode(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }
+
+    /**
+     * 注销个人签署账号
+     *
+     * @param userId    用户ID
+     * @param accountId 个人签署账号ID
+     * @return 注销结果
+     */
+    @ApiOperation(value = "注销个人签署账号", notes = "注销个人签署账号")
+    @DeleteMapping(value = "/{userId}/userAccount/{accountId}")
+    public ResponseEntity<String> deleteUserAccount(
+            @ApiParam(name = "userId", value = "用户ID", required = true) @PathVariable String userId,
+            @ApiParam(name = "accountId", value = "个人签署账号ID", required = true) @PathVariable String accountId) {
+        ResponseEntity<String> responseEntity;
+        try {
+            String token = tokenService.getToken();
+            boolean result = userAccountService.deleteUserAccountFromSignPlatform(token, accountId);
+            if (result) {
+                responseEntity = new ResponseEntity<>(ResponseMsg.DELETE_SUCCESS.getResponseCode(), HttpStatus.OK);
+            } else {
+                responseEntity = new ResponseEntity<>(ResponseMsg.DELETE_ERROR.getResponseCode(), HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            responseEntity = new ResponseEntity<>(ResponseMsg.DELETE_ERROR.getResponseCode(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return responseEntity;
     }

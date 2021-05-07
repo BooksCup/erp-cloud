@@ -123,6 +123,37 @@ public class HttpUtil {
     }
 
     /**
+     * delete请求
+     *
+     * @param url     url
+     * @param headers 请求头
+     * @return 返回值
+     * @throws Exception 异常
+     */
+    public static String httpDelete(String url, Header[] headers) throws Exception {
+        HttpDelete delete = new HttpDelete(url);
+        if (null != headers) {
+            delete.setHeaders(headers);
+        }
+        CloseableHttpClient httpClient = null;
+        try {
+            httpClient = declareSslHttpClient(url);
+            CloseableHttpResponse httpResponse = httpClient.execute(delete);
+            HttpEntity httpEntity = httpResponse.getEntity();
+            return EntityUtils.toString(httpEntity, REQ_ENCODING_UTF8);
+        } catch (ClientProtocolException e) {
+            logger.error(String.format("http请求失败，uri{%s},exception{%s}", new Object[]{url, e}));
+        } catch (IOException e) {
+            logger.error(String.format("IO Exception，uri{%s},exception{%s}", new Object[]{url, e}));
+        } finally {
+            if (null != httpClient) {
+                httpClient.close();
+            }
+        }
+        return null;
+    }
+
+    /**
      * put请求
      *
      * @param url     url

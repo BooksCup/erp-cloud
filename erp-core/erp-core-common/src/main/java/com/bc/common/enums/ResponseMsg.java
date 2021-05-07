@@ -13,6 +13,9 @@ public enum ResponseMsg {
     ESIGN_CONFIG_EMPTY("ESIGN_CONFIG_EMPTY", "电子合同API未做配置"),
     ADD_SUCCESS("ADD_SUCCESS", "新增成功"),
     ADD_ERROR("ADD_ERROR", "新增失败"),
+
+    DELETE_SUCCESS("DELETE_SUCCESS", "删除成功"),
+    DELETE_ERROR("DELETE_ERROR", "删除失败"),
     ;
 
     ResponseMsg(String responseCode, String responseMessage) {

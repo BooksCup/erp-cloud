@@ -46,4 +46,13 @@ public class ApiResult {
         this.data = data;
     }
 
+    @Override
+    public String toString() {
+        return "ApiResult{" +
+                "message='" + message + '\'' +
+                ", code=" + code +
+                ", success=" + success +
+                ", data=" + data +
+                '}';
+    }
 }
