@@ -21,7 +21,7 @@ import javax.annotation.Resource;
  */
 @Api("个人签署账号")
 @RestController
-@RequestMapping("user")
+@RequestMapping("userAccount")
 public class UserAccountController {
 
     @Resource
@@ -31,9 +31,9 @@ public class UserAccountController {
     TokenService tokenService;
 
     @ApiOperation(value = "新增个人签署账号", notes = "新增个人签署账号")
-    @PostMapping(value = "/{userId}/userAccount")
+    @PostMapping(value = "")
     public ResponseEntity<String> addUserAccount(
-            @ApiParam(name = "userId", value = "用户ID", required = true) @PathVariable String userId,
+            @ApiParam(name = "userId", value = "用户ID", required = true) @RequestParam String userId,
             @ApiParam(name = "name", value = "姓名", required = true) @RequestParam String name,
             @ApiParam(name = "idType", value = "证件类型", defaultValue = "CRED_PSN_CH_IDCARD") @RequestParam String idType,
             @ApiParam(name = "idNumber", value = "证件号", required = true) @RequestParam String idNumber,
@@ -61,14 +61,12 @@ public class UserAccountController {
     /**
      * 注销个人签署账号
      *
-     * @param userId    用户ID
      * @param accountId 个人签署账号ID
      * @return 注销结果
      */
     @ApiOperation(value = "注销个人签署账号", notes = "注销个人签署账号")
-    @DeleteMapping(value = "/{userId}/userAccount/{accountId}")
+    @DeleteMapping(value = "/{accountId}")
     public ResponseEntity<String> deleteUserAccount(
-            @ApiParam(name = "userId", value = "用户ID", required = true) @PathVariable String userId,
             @ApiParam(name = "accountId", value = "个人签署账号ID", required = true) @PathVariable String accountId) {
         ResponseEntity<String> responseEntity;
         try {
