@@ -9,6 +9,7 @@ import com.bc.contract.entity.ApiResult;
 import com.bc.contract.entity.ContractApiConfig;
 import com.bc.contract.entity.SystemConfig;
 import com.bc.contract.entity.UserAccount;
+import com.bc.contract.enums.ApiResultEnum;
 import com.bc.contract.enums.SystemConfigTypeEnum;
 import com.bc.contract.mapper.SystemConfigMapper;
 import com.bc.contract.mapper.UserAccountMapper;
@@ -73,7 +74,9 @@ public class UserAccountServiceImpl implements UserAccountService {
             String result = HttpUtil.httpPost(url, httpHead.getAllHeaders(), JSON.toJSONString(userAccount));
             ApiResult apiResult = JSONObject.parseObject(result, ApiResult.class);
             LOG.info("[addUserAccountToSignPlatform], apiResult: " + apiResult);
-            if (apiResult.isSuccess()) {
+            // ApiResult{message='成功', code=0, success=false, data={accountId=8b858959bf414381a2e81f929c236728}}
+            // 无法通过apiResult.isSuccess()判断是否成功，应该通过code判断
+            if (apiResult.getCode() == ApiResultEnum.OK.getCode()) {
                 // 成功
                 accountId = apiResult.getData().get("accountId").toString();
                 LOG.info("[addUserAccountToSignPlatform], accountId: " + accountId);
@@ -114,7 +117,8 @@ public class UserAccountServiceImpl implements UserAccountService {
         try {
             String result = HttpUtil.httpDelete(url, httpHead.getAllHeaders());
             ApiResult apiResult = JSONObject.parseObject(result, ApiResult.class);
-            if (apiResult.isSuccess()) {
+            LOG.info("[deleteUserAccountFromSignPlatform], apiResult: " + apiResult);
+            if (apiResult.getCode() == ApiResultEnum.OK.getCode()) {
                 // 成功
                 flag = true;
             } else {
